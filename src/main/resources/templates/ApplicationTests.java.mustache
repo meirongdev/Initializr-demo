@@ -1,0 +1,17 @@
+package {{packageName}};
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
+
+@SpringBootTest
+@Import(ContainerConfig.class)
+@ActiveProfiles("test")
+class {{applicationName}}Tests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

@@ -1,0 +1,15 @@
+# Build stage
+FROM eclipse-temurin:25-jdk-noble as builder
+WORKDIR /workspace
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+COPY src ./src
+RUN ./mvnw package -DskipTests
+
+# Run stage
+FROM eclipse-temurin:25-jre-noble
+WORKDIR /app
+# The finalName is set to 'app' in PluginCustomizer
+COPY --from=builder /workspace/target/app.jar app.jar
+ENTRYPOINT ["java","-jar","/app/app.jar"]

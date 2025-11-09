@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.5.7</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>dev.meirong.showcase</groupId>
+  <artifactId>initializr-demo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>initializr-demo</name>
+  <description>Demo project for Spring Boot Initializr</description>
+  <url />
+  <licenses>
+    <license />
+  </licenses>
+  <developers>
+    <developer />
+  </developers>
+  <scm>
+    <connection />
+    <developerConnection />
+    <tag />
+    <url />
+  </scm>
+  <properties>
+    <java.version>25</java.version>
+    <spotless-maven-plugin.version>3.0.0</spotless-maven-plugin.version>
+    <google-java-format.version>1.32.0</google-java-format.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.spring.initializr</groupId>
+      <artifactId>initializr-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.spring.initializr</groupId>
+      <artifactId>initializr-generator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.spring.initializr</groupId>
+      <artifactId>initializr-generator-spring</artifactId>
+    </dependency>
+    <!-- https://docs.spring.io/initializr/docs/current/reference/html/#create-instance-advanced-config-caching -->
+    <!-- <dependency>
+        <groupId>javax.cache</groupId>
+        <artifactId>cache-api</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.ehcache</groupId>
+        <artifactId>ehcache</artifactId>
+        <classifier>jakarta</classifier>
+    </dependency> -->
+
+    <dependency>
+      <groupId>io.spring.initializr</groupId>
+      <artifactId>initializr-generator-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- junit-->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.spring.initializr</groupId>
+        <artifactId>initializr-bom</artifactId>
+        <version>0.22.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless-maven-plugin.version}</version>
+        <configuration>
+          <java>
+            <googleJavaFormat>
+              <version>${google-java-format.version}</version>
+              <style>AOSP</style>
+            </googleJavaFormat>
+          </java>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

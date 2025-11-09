@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: {{artifactId}}
+  liquibase:
+    enabled: false
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: 8080
+
+# Actuator endpoints configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

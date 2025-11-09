@@ -1,0 +1,3 @@
+# ProjectGenerationConfiguration registration
+io.spring.initializr.generator.project.ProjectGenerationConfiguration=\
+dev.meirong.showcase.initializr_demo.config.CustomProjectGenerationConfiguration

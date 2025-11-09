@@ -1,0 +1,209 @@
+spring:
+  application:
+    name: initializr-demo
+initializr:
+  env:
+    repositories:
+      # 使用 'confluent' 作为 ID，以便在依赖中引用
+      confluent-repo: 
+        name: Confluent Maven Repository
+        url: https://packages.confluent.io/maven/
+  boot-versions:
+  - id: 3.5.7
+    default: true
+  java-versions:
+  - id: 25
+    default: true
+  - id: 17
+    default: false
+  languages:
+  - id: java
+    default: true
+  group-id:
+    value: dev.meirong.showcase
+  artifact-id:
+    value: my-app
+  description:
+    value: Spring Boot Showcase
+  packagings:
+  - id: jar
+    name: Jar
+    default: true
+  types:
+  - id: maven-project
+    default: true
+    description: Generate a Maven based project archive
+    tags:
+      build: maven
+      format: project
+    action: /starter.zip
+  dependencies:
+  # --- 组 1: Web/基础 ---
+    - name: Web
+      content:
+        - name: Web
+          id: web
+          description: Full-stack web development with Tomcat and Spring MVC
+          groupId: org.springframework.boot
+          artifactId: spring-boot-starter-web
+          # Spring Boot Starter Web 默认是平台管理的，无需指定坐标
+          
+        - name: Actuator
+          id: actuator
+          description: Production-ready features to help you monitor and manage your application
+          groupId: org.springframework.boot
+          artifactId: spring-boot-starter-actuator
+          # 默认是平台管理的
+          
+        - name: Validation
+          id: validation
+          description: Bean validation support
+          groupId: org.springframework.boot
+          artifactId: spring-boot-starter-validation
+          
+    # --- 组 2: Data Access (JPA/Database) ---
+    - name: Data Access
+      content:
+        - name: JPA
+          id: jpa
+          description: Spring Data JPA with Hibernate
+          facets: jpa # 标记这是一个 JPA 项目 (用于驱动 generator-spring 的条件逻辑)
+          groupId: org.springframework.boot
+          artifactId: spring-boot-starter-data-jpa
+          
+        - name: MySQL Database
+          id: mysql
+          groupId: com.mysql
+          artifactId: mysql-connector-j
+          description: MySQL JDBC Driver
+          scope: runtime
+
+        - name: Liquibase
+          id: liquibase
+          groupId: org.liquibase
+          artifactId: liquibase-core
+          description: Database schema migration tool
+          
+    # --- 组 3: Messaging (Kafka) ---
+    - name: Messaging
+      content:
+        - name: Kafka
+          id: kafka
+          groupId: org.springframework.kafka
+          artifactId: spring-kafka
+          description: Integrate with Apache Kafka
+          
+        - name: Kafka JSON Schema
+          id: kafka-json-schema
+          groupId: io.confluent
+          artifactId: kafka-json-schema-serializer
+          version: 8.1.0
+          repository: confluent-repo
+
+    # --- 组 4: Caching & Redis ---
+    - name: Caching
+      content:
+        - name: Redis
+          id: redis
+          description: Spring Data Redis support
+          groupId: org.springframework.boot
+          artifactId: spring-boot-starter-data-redis
+        
+    # --- 组 5: Observability & Monitoring ---
+    - name: Observability
+      content:
+        - name: Prometheus Metrics
+          id: prometheus
+          groupId: io.micrometer
+          artifactId: micrometer-registry-prometheus
+          description: Metrics endpoint for Prometheus
+          scope: runtime
+          
+        - name: Micrometer Tracing
+          id: micrometer-tracing
+          groupId: io.micrometer
+          artifactId: micrometer-tracing
+          description: API for distributed tracing with Micrometer
+
+        - name: Micrometer Tracing Bridge OTEL
+          id: micrometer-tracing-bridge-otel
+          groupId: io.micrometer
+          artifactId: micrometer-tracing-bridge-otel
+          description: Micrometer bridge for OpenTelemetry
+
+        - name: OpenTelemetry OTLP Exporter
+          id: otel-otlp
+          groupId: io.opentelemetry
+          artifactId: opentelemetry-exporter-otlp
+          description: Export spans and metrics to OTLP endpoint
+
+    # --- 组 6: Utilities ---
+    - name: Utilities
+      content:
+        - name: Development Tools
+          id: devtools
+          groupId: org.springframework.boot
+          artifactId: spring-boot-devtools
+          description: Automatically restart the application on file changes
+          scope: runtime
+
+        - name: Logging (Logstash)
+          id: logstash-logging
+          groupId: net.logstash.logback
+          artifactId: logstash-logback-encoder
+          version: 8.1
+          description: Structured logging with Logstash format
+          
+        - name: ULID Creator
+          id: ulid
+          groupId: com.github.f4b6a3
+          artifactId: ulid-creator
+          version: 5.2.3
+          description: Generate ULIDs (Universally Unique Lexicographically Sortable Identifier)
+        - name: Lombok
+          id: lombok
+          groupId: org.projectlombok
+          artifactId: lombok
+          description: Reduce boilerplate code with Lombok annotations
+    # --- 组 7: Configuration Processor ---
+    - name: Configuration
+      content:
+        - name: Configuration Processor
+          id: configuration-processor
+          groupId: org.springframework.boot
+          artifactId: spring-boot-configuration-processor
+          description: Generate metadata for configuration properties
+
+    # --- 组 8: Testing ---
+    - name: Testing
+      content:
+        - name: Spring Boot Starter Test
+          id: spring-boot-starter-test
+          groupId: org.springframework.boot
+          artifactId: spring-boot-starter-test
+          description: Testing utilities for Spring Boot applications
+          scope: test
+        - name: Spring Boot Testcontainers
+          id: spring-boot-testcontainers
+          groupId: org.springframework.boot
+          artifactId: spring-boot-testcontainers
+          description: Integration between Spring Boot test utilities and Testcontainers
+          scope: test
+        - name: Testcontainers
+          id: testcontainers
+          groupId: org.testcontainers
+          artifactId: testcontainers
+          description: JUnit support for Testcontainers
+          scope: test
+        - name: Testcontainers MySQL Module
+          id: testcontainers-mysql
+          groupId: org.testcontainers
+          artifactId: mysql
+          description: MySQL module for Testcontainers
+          scope: test
+        - name: Testcontainers junit-jupite
+          id: testcontainers-junit-jupiter
+          groupId: org.testcontainers
+          artifactId: junit-jupiter
+          description: JUnit Jupiter integration for Testcontainers
+          scope: test
